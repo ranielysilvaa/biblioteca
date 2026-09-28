@@ -1,18 +1,4 @@
-<<<<<<< HEAD
-<?php
-require_once __DIR__. "/../models/categoria.php";
-session_start();
 
-$nome = $_POST["nome"];
-$id = $_POST["nome"];
-
-$categoria = new Categoria();
-$categoria->atualizar($nome,$id);
-
-$_SESSION["aviso"] = "Categoria atualizada com sucesso";
-header("location: /biblioteca/views/categoria/gerenciar_categoria.php");
-exit();
-=======
 <?php 
 // importa o arquivo que contém a classe Categoria 
 require_once __DIR__ . "/../models/categoria.php"; 
@@ -42,4 +28,4 @@ header('Location: /biblioteca/views/categoria/gerenciar_categorias.php');
 
 // encerra a execução do código depois do redirecionamento 
 exit(); 
->>>>>>> 870c52ef65851ed55589e4f32f998947f38331e0
+

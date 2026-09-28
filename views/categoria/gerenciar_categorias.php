@@ -17,13 +17,16 @@ $resultado = Categoria::listar();
         <?php foreach($resultado as $categoria): ?>
             <tr>
                 <td><?= $categoria['nome'] ?></td>
-<<<<<<< HEAD
-                <td><a href="/biblioteca/views/categoria/editar_categoria.php?id=<?=$categoria["id_categoria"]?>">Editar</a></td>
-                <td><a href="/biblioteca/controllers/categoria_del_controller.php?id=<?=$categoria["id_categoria"]?>">Deletar</a></td>
-=======
-                <td><a href="/biblioteca/views/categoria/editar_categoria.php?id=<?= $categoria['id_categoria'] ?>">Editar</a></td>
-                <td><a href="/biblioteca/controllers/categoria_del_controller.php?id=<?= $categoria['id_categoria'] ?>" onclick="return confirm('Tem certeza que deseja deletar esta categoria?')">Deletar</a></td>
->>>>>>> 870c52ef65851ed55589e4f32f998947f38331e0
+
+                <td>
+                    <a href="/biblioteca/views/categoria/editar_categoria.php?id=<?=$categoria["id_categoria"]?>">Editar</a>
+                </td>
+                
+
+                <td>
+                    <a href="/biblioteca/controllers/categoria_del_controller.php?id=<?= $categoria['id_categoria'] ?>" onclick="return confirm('Tem certeza que deseja deletar esta categoria?')">Deletar</a>
+                </td>
+
             </tr>
         <?php endforeach; ?>
     </table>

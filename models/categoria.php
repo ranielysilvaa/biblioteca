@@ -98,166 +98,45 @@ class Categoria
         }
     }
 
-    // metodo para carregar os dados do item baseado no id
-    // faz parte do R (Read) do CRUD
+   
     public function carregar($id)
     {
-        // usamos try/catch quando existe possibilidade de erro, principalmente ao usar banco de dados
-        // o try é onde tentamos executar o código
+       
         try {
-            // chama o método conectar() da classe Conexao
-            // cria uma conexão configurada e guarda na variável $conexao
+            
             $conexao = Conexao::conectar();
-
-            // comando SQL responsável por buscar uma categoria pelo seu ID
-            // :id é um espaço reservado para o ID da categoria que será buscada
             $sql = "SELECT * FROM categoria WHERE id_categoria = :id";
-
-            // prepara o SQL para executar
             $stmt = $conexao->prepare($sql);
-
-            // coloca o valor de $id no espaço reservado :id
             $stmt->bindValue(':id', $id);
-
-            // executa o comando no banco
             $stmt->execute();
-
-            // pega o resultado encontrado no banco
-            // como estamos buscando pelo ID, esperamos apenas um registro
             $resultado = $stmt->fetch();
-
-            // verifica se foi encontrada alguma categoria
             if ($resultado) {
-                // coloca o ID encontrado no atributo id_categoria do objeto que chamou o metodo
                 $this->id_categoria = $resultado['id_categoria'];
-
-                // coloca o nome encontrado no atributo nome do objeto que chamou o metodo
                 $this->nome = $resultado['nome'];
             }
-        } catch (PDOException $e) { // executa caso aconteça um erro
-            // mostra o erro encontrado
+        } catch (PDOException $e) { 
             echo $e->getMessage();
         }
     }
 
-    // metodo para atualizar os dados do item baseado no id
-    // faz parte do U (Update) do CRUD
+   
     public function atualizar($nome, $id)
     {
-        // usamos try/catch quando existe possibilidade de erro, principalmente ao usar banco de dados
-        // o try é onde tentamos executar o código
+        
         try {
-            // chama o método conectar() da classe Conexao
-            // cria uma conexão configurada e guarda na variável $conexao
             $conexao = Conexao::conectar();
-
-            // comando SQL responsável por atualizar o nome de uma categoria
-            // :nome e :id são espaços reservados para os valores que serão utilizados
             $sql = "UPDATE categoria SET nome = :nome WHERE id_categoria = :id";
-
-            // prepara o SQL para executar
             $stmt = $conexao->prepare($sql);
-
-            // coloca o valor de $nome no espaço reservado :nome
             $stmt->bindValue(':nome', $nome);
-
-            // coloca o valor de $id no espaço reservado :id
             $stmt->bindValue(':id', $id);
-
-            // executa o comando no banco
             $stmt->execute();
-        } catch (PDOException $e) { // executa caso aconteça um erro
-            // mostra o erro encontrado
-            echo $e->getMessage();
-        }
-    }
-
-    public function inserir ($nome) {
-        try {
-            $conexao = Conexao::conectar();
-            $sql = "INSERT INTO categoria (nome) VALUES (:nome)";
-            $stmt = $conexao->prepare($sql);
-            $stmt->bindValue(":nome",$nome);
-            $stmt->execute();
-
-<<<<<<< HEAD
         } catch (PDOException $e) {
-            echo $e->getmessage();
-        }
-    }
-
-     public function deletar($id)
-    {
-        // usamos try/catch quando existe possibilidade de erro, principalmente ao usar banco de dados
-        // o try é onde tentamos executar o código
-        try {
-            // chama o método conectar() da classe Conexao
-            // cria uma conexão configurada e guarda na variável $conexao
-            $conexao = Conexao::conectar();
-
-            // comando SQL responsável por excluir um item
-            // :id é um espaço reservado para o ID do item que será excluído
-            $sql = "DELETE FROM categoria WHERE id_categoria = :id";
-
-            // prepara o SQL para executar
-            $stmt = $conexao->prepare($sql);
-
-            // coloca o valor de $id no espaço reservado :id
-            $stmt->bindValue(':id', $id);
-
-            // executa o comando no banco
-            $stmt->execute();
-        } catch (PDOException $e) { // executa caso aconteça um erro
-            // mostra o erro encontrado
             echo $e->getMessage();
         }
     }
 
-    // metodo para carregar os dados do item baseado no id
-    // faz parte do R (Read) do CRUD
-    public function carregar($id)
-    {
-        // usamos try/catch quando existe possibilidade de erro, principalmente ao usar banco de dados
-        // o try é onde tentamos executar o código
-        try {
-            // chama o método conectar() da classe Conexao
-            // cria uma conexão configurada e guarda na variável $conexao
-            $conexao = Conexao::conectar();
-
-            // comando SQL responsável por buscar uma categoria pelo seu ID
-            // :id é um espaço reservado para o ID da categoria que será buscada
-            $sql = "SELECT * FROM categoria WHERE id_categoria = :id";
-
-            // prepara o SQL para executar
-            $stmt = $conexao->prepare($sql);
-
-            // coloca o valor de $id no espaço reservado :id
-            $stmt->bindValue(':id', $id);
-
-            // executa o comando no banco
-            $stmt->execute();
-
-            // pega o resultado encontrado no banco
-            // como estamos buscando pelo ID, esperamos apenas um registro
-            $resultado = $stmt->fetch();
-
-            // verifica se foi encontrada alguma categoria
-            if ($resultado) {
-                // coloca o ID encontrado no atributo id_categoria do objeto que chamou o metodo
-                $this->id_categoria = $resultado['id_categoria'];
-
-                // coloca o nome encontrado no atributo nome do objeto que chamou o metodo
-                $this->nome = $resultado['nome'];
-            }
-        } catch (PDOException $e) { // executa caso aconteça um erro
-            // mostra o erro encontrado
-            echo $e->getMessage();
-        }
-    }
-
-=======
->>>>>>> 870c52ef65851ed55589e4f32f998947f38331e0
-
+   
+    
 
 
     public function getId()
@@ -269,23 +148,11 @@ class Categoria
     {
         return $this->nome;
     }
-<<<<<<< HEAD
+
     
 
-    public function atualizar($nome,$id){
-        try{
-             $conexao = Conexao::conectar();
-            $sql = "UPDATE categoria  SET nome = :nome WHERE id_categoria = :id";
-            $stmt = $conexao->prepare($sql);
-            $stmt->bindValue(":nome" , $nome);
-            $stmt->bindValue(":id" , $id);
-            $stmt->execute();
+    
+}
 
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
-        }
-}
-=======
-}
->>>>>>> 870c52ef65851ed55589e4f32f998947f38331e0
+
+
